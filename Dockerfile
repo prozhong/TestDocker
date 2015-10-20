@@ -16,7 +16,7 @@ RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSep
 
 ADD set_root_pw.sh /set_root_pw.sh
 ADD run.sh /run.sh
-ADD start_server.sh /start_server.sh
+ADD start_server.sh /data/start_server.sh
 RUN chmod +x /*.sh
 
 # Download Minecraft Server components
