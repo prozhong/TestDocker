@@ -16,17 +16,12 @@ RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSep
 
 ADD set_root_pw.sh /set_root_pw.sh
 ADD run.sh /run.sh
+ADD start_server.sh /start_server.sh
 RUN chmod +x /*.sh
 
 # Download Minecraft Server components
 
 RUN wget -q https://s3.amazonaws.com/Minecraft.Download/versions/1.8.8/minecraft_server.1.8.8.jar
-RUN mkdir /data && \
-    cd /data && \
-    wget -q --no-check-certificate https://raw.githubusercontent.com/prozhong/TestDocker/master/server.properties -O server.properties
-
-RUN cd /data && \
-    wget -q --no-check-certificate https://raw.githubusercontent.com/prozhong/TestDocker/master/eula.txt -O eula.txt
 
 ENV AUTHORIZED_KEYS **None**
 
