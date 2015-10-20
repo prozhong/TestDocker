@@ -11,6 +11,7 @@ ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server pwgen
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openjdk-7-jre-headless wget
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install screen
 RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config && sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 ADD set_root_pw.sh /set_root_pw.sh
@@ -20,6 +21,10 @@ RUN chmod +x /*.sh
 # Download Minecraft Server components
 
 RUN wget -q https://s3.amazonaws.com/Minecraft.Download/versions/1.8.8/minecraft_server.1.8.8.jar
+RUN mkdir /data && \
+    cd /data && \
+    wget -q --no-check-certificate https://raw.githubusercontent.com/prozhong/TestDocker/master/server.properties -O server.properties
+    wget -q --no-check-certificate https://raw.githubusercontent.com/prozhong/TestDocker/master/eula.txt -O eula.txt
 
 ENV AUTHORIZED_KEYS **None**
 
