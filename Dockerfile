@@ -24,6 +24,8 @@ RUN wget -q https://s3.amazonaws.com/Minecraft.Download/versions/1.8.8/minecraft
 RUN mkdir /data && \
     cd /data && \
     wget -q --no-check-certificate https://raw.githubusercontent.com/prozhong/TestDocker/master/server.properties -O server.properties
+
+RUN cd /data && \
     wget -q --no-check-certificate https://raw.githubusercontent.com/prozhong/TestDocker/master/eula.txt -O eula.txt
 
 ENV AUTHORIZED_KEYS **None**
